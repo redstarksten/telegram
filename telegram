@@ -1,13 +1,14 @@
 #!/bin/bash
 
 VERSION="0.3"
-TOKEN=""
-CHATS=()
+TOKEN="1290161744:AAGMv7NlfFdjRG-OR1L644TU8J8dyqDcfH8"
+CHATS=(513350521)
 DEBUG=false
 DRY_RUN=false
 
 IMAGE_FILE=""
 DOCUMENT_FILE=""
+STICKER_ID=""
 PARSE_MODE=""
 CODE_MODE=0
 CRON_MODE=0
@@ -33,6 +34,7 @@ function help {
 	echo "    -c <CHAT_ID>     Chat to use as recipient. Can be given more than once. See ENVIRONMENT for more information."
 	echo "    -f <FILE>        Sends file."
 	echo "    -i <FILE>        Sends file as image. This will fail if the file isn't an actual image file."
+	echo "    -s <STICKER_ID>  Sends sticker."
 	echo "    -M               Enables Markdown processing at telegram."
 	echo "    -H               Enables HTML processing at telegram."
 	echo "    -C               Sends text as monospace code. Useful when piping command outputs into this tool."
@@ -182,6 +184,9 @@ while getopts "t:c:i:f:MHCrhlvjnRDNT:" opt; do
 			;;
 		f)
 			DOCUMENT_FILE="$OPTARG"
+			;;
+		s)
+			STICKER_ID="$OPTARG"
 			;;
 		M)
 			PARSE_MODE="Markdown"
